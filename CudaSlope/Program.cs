@@ -166,7 +166,7 @@ namespace CudaSlope
 
             //append file stats at the end
             var stats = ReadStatistics(inputFile);
-            File.AppendAllLines(outputFile, new[] { $"# {HeaderHeightName}{stats.Height} width={stats.Width}" });
+            File.AppendAllLines(outputFile, new[] { $"# {HeaderHeightName}{stats.Height} {HeaderWidthName}{stats.Width}" });
 
             return outputFile;
         }
