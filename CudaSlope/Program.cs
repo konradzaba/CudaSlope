@@ -391,11 +391,11 @@ namespace CudaSlope
                         ((portionGpu[i - 1, j - 1] + 2 * portionGpu[i, j - 1] + portionGpu[i, j + 1]) -
                         (portionGpu[i - 1, j + 1] + 2 * portionGpu[i, j + 1] + portionGpu[i + 1, j + 1])) / inputImageGridSpacing;
 
-                    var slopeNorthEast =
+                    var slopeNorthSouth =
                         ((portionGpu[i - 1, j - 1] + 2 * portionGpu[i - 1, j] + portionGpu[i - 1, j + 1]) -
                         (portionGpu[i + 1, j - 1] + 2 * portionGpu[i + 1, j] + portionGpu[i + 1, j + 1])) / inputImageGridSpacing;
 
-                    var slopePercentage = DeviceFunction.Sqrt(DeviceFunction.Pow(slopeEastWest, 2) + DeviceFunction.Pow(slopeNorthEast, 2));
+                    var slopePercentage = DeviceFunction.Sqrt(DeviceFunction.Pow(slopeEastWest, 2) + DeviceFunction.Pow(slopeNorthSouth, 2));
 
                     gpuSlope[i, j] = DeviceFunction.Atan(slopePercentage) * RadiansToDegrees;
                 });
@@ -426,10 +426,10 @@ namespace CudaSlope
                     var slopeEastWest =
                         ((elevation[i - 1, j - 1] + 2 * elevation[i, j - 1] + elevation[i, j + 1]) -
                         (elevation[i - 1, j + 1] + 2 * elevation[i, j + 1] + elevation[i + 1, j + 1])) / gridSpacing;
-                    var slopeNorthEast =
+                    var slopeNorthSouth =
                         ((elevation[i - 1, j - 1] + 2 * elevation[i - 1, j] + elevation[i - 1, j + 1]) -
                         (elevation[i + 1, j - 1] + 2 * elevation[i + 1, j] + elevation[i + 1, j + 1])) / gridSpacing;
-                    var slopePercentage = Math.Sqrt(Math.Pow(slopeEastWest, 2f) + Math.Pow(slopeNorthEast, 2f));
+                    var slopePercentage = Math.Sqrt(Math.Pow(slopeEastWest, 2f) + Math.Pow(slopeNorthSouth, 2f));
                     //cast performance penalty is negligible here (tested, kept for simplifying the code)
                     _slope[i, j] = (float)Math.Atan(slopePercentage) *  RadiansToDegrees;
                 }

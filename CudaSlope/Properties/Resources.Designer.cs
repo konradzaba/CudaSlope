@@ -61,9 +61,15 @@ namespace CudaSlope.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to adsa
-        ///asda
-        ///asd
+        ///   Looks up a localized string similar to Usage:
+        ///-i Input path to GeoTIFF file or already processed XYZ file, example: -i:C:\input.tif
+        ///-o Output file path, example: -o:C:\output.png
+        ///-m OPTIONAL, use CPU or GPU, default is CPU, example: -m:GPU
+        ///-b OPTIONAL, run benchmark with number of iterations, example: -b:50
+        ///
+        ///Note: if the input file is not already processed XYZ file, paths to GDAL executables have to be given in config file.
+        ///
+        ///Example: -i:C:\cudaTesty\cudaTesty.xyz -o:C:\cudaTesty\export.png -m:CPU -b:50
         ///.
         /// </summary>
         internal static string usageInfo {
